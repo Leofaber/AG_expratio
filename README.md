@@ -14,5 +14,5 @@ Il software calcola il valore exp-ratio su di una mappa exposure data la coppia 
 ### Dipendenze:
 
 	ExpRatioEvaluator:
-	presente in agile-B24-r5
+	presente in agile-B24-r5 (versione locale agilepipebkp.iasfbo.inaf.it:/home/student/BUILD_GRID_SCI_INSTALLED ) 
 
