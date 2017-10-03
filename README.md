@@ -1,18 +1,17 @@
-# AG_expratio
+# AG_expratio 1.0.1
 
 Il software calcola il valore exp-ratio su di una mappa exposure data la coppia (l,b) della posizione del blob.
+Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvaluator
 
 	INPUT:
 	
-	path al file exp, nome file di output, minThreshold, maxThreshold, l , b
+	path al file exp, nome file di output, normalize(true/false), l, b,  minThreshold, maxThreshold
 
 	OUTPUT 
 
-	exp-ratio nBad totCount greyLevelsMean
-
+	exp-ratio
 
 ### Dipendenze:
 
-	ExpRatioEvaluator:
-	presente in agile-B24-r5
+	ExpRatioEvaluator https://github.com/Leofaber/ExpRatioEvaluator
 
