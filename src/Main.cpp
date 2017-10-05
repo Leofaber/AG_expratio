@@ -15,6 +15,7 @@
 #include "ExpRatioEvaluator.h"
 #include <cstring>
 
+
 const char* startString = {
 "################################################################\n"
 "###                   Task AG_expratio v1.0.1 -              ###"
@@ -25,6 +26,15 @@ const char* endString = {
 "################################################################"
 };
 
+void printMatrix(double ** matrix, int rows, int cols){
+	for(int i = 0; i < rows; i++){
+		for(int j = 0; j < cols; j ++){
+			cout << matrix[i][j] << " ";
+		}
+		cout << "\n";
+	}
+}
+
 
 int main(int argc, char *argv[])
 { 	
@@ -33,7 +43,7 @@ int main(int argc, char *argv[])
 	
 	if(argc < 6 || argc >8)
 	{
-		printf("\nAt least 5 arguments expected (+ 2 optional)\n   - The .exp file path\n   - The name of the output file\n   - Normalize boolean: true if exp should be normalized, false otherwise\n   - The l coordinate\n    -The b coordinate\n\n(Optional)\n   - The minThreshold (default value = 0)\n   - The maxThreshold (default value = 100)\n");
+		printf("\nAt least 5 arguments expected (+ 2 optional)\n   - The .exp file path\n   - The name of the output file\n   - Normalize boolean: true if exp-ratio must be computed on a normalized map, false otherwise\n   - The l coordinate\n    -The b coordinate\n\n(Optional)\n   - The minThreshold (default value = 0)\n   - The maxThreshold (default value = 100)\n");
 		cout << endString << endl;		
 		exit (EXIT_FAILURE);
 	}
@@ -42,7 +52,7 @@ int main(int argc, char *argv[])
 	{	
         const char * imagePath = argv[1];
         const char * outfile = argv[2];
-        const char *normalize = argv[3];
+        const char *onNormalizedMap = argv[3];
 		double l = atof(argv[4]);
 		double b = atof(argv[5]);
 		double minThreshold = 0;
@@ -52,11 +62,11 @@ int main(int argc, char *argv[])
 		    maxThreshold = (double) atof(argv[7]);
 		}
 		
-		bool doNormalization;
-		if( strcmp(normalize, "true") == 0 )
-			doNormalization = true;
+		bool computeExpRatioOnNormalizedMap;
+		if( strcmp(onNormalizedMap, "true") == 0 )
+			computeExpRatioOnNormalizedMap = true;
 		else
-			doNormalization = false;
+			computeExpRatioOnNormalizedMap = false;
 		
 		
 		//cout << "imagePath: " << imagePath << endl;
@@ -70,16 +80,24 @@ int main(int argc, char *argv[])
 		ofstream resText(outfile);
 		resText.setf(ios::fixed); 
 
-		ExpRatioEvaluator exp(imagePath,doNormalization,minThreshold,maxThreshold,l,b);
-		double *output = exp.computeExpRatioValues();
+		ExpRatioEvaluator exp(imagePath);
+		double *output = exp.computeExpRatioValues(l,b,computeExpRatioOnNormalizedMap,minThreshold,maxThreshold);
 
 		resText << setprecision(5) << output[0];	// <<" "<< output[1] <<" "<< output[2] <<" "<< output[3]
 		
 		cout << "Created " <<outfile<< " log file."<<endl;
 		resText.close();
-	}
-	 
+
+		double ** expRatioMap = exp.createExpRatioPixelMap(computeExpRatioOnNormalizedMap,minThreshold,maxThreshold);
+		
+		//printMatrix(expRatioMap,exp.getRows(),exp.getCols());
 	
-	cout << endString << endl;
-    return 0;
+		exp.writeMatrixDataInAgileMapFile(expRatioMap, exp.agileMap, "EXP_EXPRATIO.exp");	
+		
+		cout << endString << endl;
+		return 0;
+
+	}
 }
+		
+		

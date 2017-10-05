@@ -10,6 +10,11 @@ Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvalua
 	OUTPUT 
 
 	exp-ratio
+	
+	OUTPUT FILE
+	
+	EXP_EXPRATIO.exp
+	exp_norm.exp
 
 ### Dipendenze:
 
