@@ -1,11 +1,13 @@
+
 /*
  * Copyright (c) 2017
- *     Leonardo Baroncelli, Giancarlo Zollino,
+ *     Leonardo Baroncelli, Giancarlo Zollino
  *
  * Any information contained in this software
  * is property of the AGILE TEAM and is strictly
  * private and confidential.
- *
+ * 
+ * https://github.com/Leofaber/AG_expratio
 */
 
 #include <iostream>
