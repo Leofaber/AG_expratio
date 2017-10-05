@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 		
 		//printMatrix(expRatioMap,exp.getRows(),exp.getCols());
 	
-		exp.writeMatrixDataInAgileMapFile(expRatioMap, exp.agileMap, "EXP_EXPRATIO.exp");	
+		exp.writeMatrixDataInAgileMapFile(expRatioMap, exp.agileMap, "exp_ratio_norm.exp");	
 		
 		cout << endString << endl;
 		return 0;
