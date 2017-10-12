@@ -3,6 +3,10 @@
 Il software calcola il valore exp-ratio su di una mappa exposure data la coppia (l,b) della posizione del blob.
 Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvaluator
 
+### Utilizzo: 
+
+	./bin/AG_expratio imagePath outfile onNormalizedMap l b minThreshold maxThreshold squareSize
+
 ### Input:
 	
 	imagePath: il percorso alla mappa di esposizone (.exp o .exp.gz) ( const char * )
@@ -23,7 +27,11 @@ Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvalua
 
 	squareSize: la dimensione in pixel del lato della regione (quadrato) su cui si calcola l'exp-ratio ( int ) ( default = 10 )
 
-### Outputs
+### Esempio di utilizzo
+
+	./bin/AG_expratio ../../mappetest/exp.exp log.txt true 45 30 d 140 d
+
+### Output
 
 	1) L'outuput di ExpRatioEvaluator -> https://github.com/Leofaber/ExpRatioEvaluator
 	2) Il file <outfile> che riporta il valore exp-ratio
@@ -31,7 +39,4 @@ Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvalua
 ### Dipendenze:
 
 	ExpRatioEvaluator https://github.com/Leofaber/ExpRatioEvaluator
-
-### Esempio di utilizzo:
-
-	./bin/ExpRatioEvaluator mappetest/exp.exp log.txt true 45 30 d 140 5
+	
