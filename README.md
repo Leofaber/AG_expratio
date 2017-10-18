@@ -14,6 +14,8 @@ Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvalua
 	outfile: il file di output (è possibile specificare anche il percorso) ( const char * )
 
 	onNormalizedMap: se il valore è "true", la valutazione exp-ratio viene effettuata sulla mappa normalizzata. Inoltre la mappa exp-ratio viene creata a partire dalla mappa normalizzata. Altrimenti si utilizza l'immagine in input. ( true/false )
+
+	createExpRatioMap: se il valore è "true", viene creata una mappa (FITS) nella quale il valore di ogni pixel rappresenta il valore dell'ExpRatioEvaluator calcolato sul medesimo pixel. Se il valore è "false" non viene creata alcuna mappa. ( true/false )
 	
 	l: longitudine galattica ( double )
 	
@@ -29,7 +31,7 @@ Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvalua
 
 ### Esempio di utilizzo
 
-	./bin/AG_expratio ../../mappetest/exp.exp log.txt true 45 30 d 140 d
+	./bin/AG_expratio ../../mappetest/exp.exp log.txt true false 45 30 d 140 d
 
 ### Output
 
