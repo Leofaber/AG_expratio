@@ -121,7 +121,6 @@ int main(int argc, char *argv[])
 		resText.setf(ios::fixed); 
 
 
-		//ExpRatioEvaluator exp(imagePath,computeExpRatioOnNormalizedMap,minThreshold,maxThreshold,squareSize);
 		ExpRatioEvaluator exp(imagePath,computeExpRatioOnNormalizedMap, boolCreateExpRatioMap, minThreshold,maxThreshold,squareSize);
 					
 
