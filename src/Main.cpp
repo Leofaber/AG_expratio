@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 	// CONTROLLO NUMERO PARAMETRI (TOO FEW, TOO MUCH)	
 	if(argc < 7 || argc > 10)
 	{
-		printf("\nAt least 6 arguments expected (+ 3 optional)\n   - The .exp file path\n   - The name of the output file\n   - Normalize boolean: true if exp-ratio must be computed on a normalized map, false otherwise\n   - The createExpRatioMap boolean: true if ExpRatioMap have to be created\n   - The l coordinate\n    -The b coordinate\n\n(Optional)\n   - The minThreshold (default value = 120)\n   - The maxThreshold (default value = 140)\n   - The square size (default value = 10)\n");
+		printf("\nAt least 6 arguments expected (+ 3 optional)\n   - The .exp file path\n   - The name of the output file\n   - The normalize boolean: true if exp-ratio must be computed on a normalized map, false otherwise\n   - The createExpRatioMap boolean: true if ExpRatioMap have to be created\n   - The l coordinate\n    -The b coordinate\n\n(Optional)\n   - The minThreshold (default value = 120)\n   - The maxThreshold (default value = 140)\n   - The square size (default value = 10)\n");
 		cout << endString << endl;		
 		exit (EXIT_FAILURE);
 	}
@@ -121,7 +121,6 @@ int main(int argc, char *argv[])
 		resText.setf(ios::fixed); 
 
 
-		//ExpRatioEvaluator exp(imagePath,computeExpRatioOnNormalizedMap,minThreshold,maxThreshold,squareSize);
 		ExpRatioEvaluator exp(imagePath,computeExpRatioOnNormalizedMap, boolCreateExpRatioMap, minThreshold,maxThreshold,squareSize);
 					
 
