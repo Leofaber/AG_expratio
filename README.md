@@ -5,23 +5,24 @@ Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvalua
 
 ### Utilizzo: 
 
-	./bin/AG_expratio imagePath outfile onNormalizedMap l b minThreshold maxThreshold squareSize
+	./bin/AG_expratio outfile imagePath l b isExpMapNormalized createExpRatioMap minThreshold maxThreshold squareSize
 
 ### Input:
+
+	outfile: il file di output (è possibile specificare anche il percorso) ( const char * )
 	
 	imagePath: il percorso alla mappa di esposizone (.exp o .exp.gz) ( const char * )
 
-	outfile: il file di output (è possibile specificare anche il percorso) ( const char * )
-
-	onNormalizedMap: se il valore è "true", la valutazione exp-ratio viene effettuata sulla mappa normalizzata. Inoltre la mappa exp-ratio viene creata a partire dalla mappa normalizzata. Altrimenti si utilizza l'immagine in input. ( true/false )
-
-	createExpRatioMap: se il valore è "true", viene creata una mappa (FITS) nella quale il valore di ogni pixel rappresenta il valore dell'ExpRatioEvaluator calcolato sul medesimo pixel. Se il valore è "false" non viene creata alcuna mappa. ( true/false )
-	
 	l: longitudine galattica ( double )
 	
 	b: latitudine galattica ( double )
+
 	
 (OPZIONALI) -> è possibile specificare "d" per usare il valore di default
+
+	isExpMapNormalized : se il valore è "false", si afferma che la mappa exp in input NON è normalizzata. Il software provvederà a normalizzarla ed a scriverla su file. ( default = false)
+
+	createExpRatioMap: se il valore è "true", viene creata una mappa (FITS) nella quale il valore di ogni pixel rappresenta il valore dell'ExpRatioEvaluator calcolato sul medesimo pixel. Se il valore è "false" non viene creata alcuna mappa. ( true/false ) ( default = false)
 
 	minThreshold: la soglia minima sotto la quale il pixel è considerato "bad" per il calcolo dell'exp-ratio ( double ) ( default = 120 )
 	
@@ -31,7 +32,7 @@ Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvalua
 
 ### Esempio di utilizzo
 
-	./bin/AG_expratio ../../mappetest/exp.exp log.txt true false 45 30 d 140 d
+	./bin/AG_expratio log.txt ../../mappetest/exp.exp 45 30 false true d 140 d
 
 ### Output
 
