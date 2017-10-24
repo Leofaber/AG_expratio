@@ -1,4 +1,4 @@
-# AG_expratio 1.0.2
+# AG_expratio 1.0.3
 
 Il software calcola il valore exp-ratio su di una mappa exposure data la coppia (l,b) della posizione del blob.
 Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvaluator
