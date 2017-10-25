@@ -49,6 +49,7 @@ include
 *.swp
 *.save
 *.exp
+*.gz
 version
 include/ExpRatioEvaluator.h
 src/ExpRatioEvaluator.cpp

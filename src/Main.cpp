@@ -21,7 +21,7 @@
 
 const char* startString = {
 "################################################################\n"
-"###                   Task AG_expratio v1.0.1 -              ###"
+"###                   Task AG_expratio v1.0.4 -              ###"
 };
 
 const char* endString = {
@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
 	double maxThreshold = 140;
 	int squareSize = 20;
 	const char * isAlreadyNormalized = "false";
+	const char * createExpNormalizedMap = "false";
 	const char * createExpRatioMap = "false";
 
 
@@ -61,9 +62,9 @@ int main(int argc, char *argv[])
 	// CONTROLLO NUMERO PARAMETRI (TOO FEW, TOO MUCH) -------------------------------
 
 	
-	if(argc < 5 || argc > 10)
+	if(argc < 6 || argc > 11)
 	{
-		printf("\nAt least 4 arguments expected (+ 5 optional)\n   - The name of the output file\n   - The .exp file path\n   - The l coordinate\n    -The b coordinate\n\n(Optional)\n   - The isExpMapNormalized boolean: if 'true' we assert that the exp map given in input is already normalized. If 'false' the exp map will be normalized and it will be writed on file (default value = false)\n   - The createExpRatioMap boolean: if 'true' the ExpRatioMap will be writed on file. (default value = false)\n   - The minThreshold (default value = 120)\n   - The maxThreshold (default value = 140)\n   - The square size (default value = 20).\n");
+		printf("\nAt least 5 arguments expected (+ 5 optional)\n   - The name of the output file\n   - The .exp file path\n   - The isExpMapNormalized boolean: if 'true' we assert that the exp map given in input is already normalized. If 'false' the exp map will be normalized and it will be writed on file (default value = false)\n   - The l coordinate\n   - The b coordinate\n\n(Optional)\n   - The createExpNormalizedMap: if 'true' the ExpNormalizedMap will be writed on file.\n   - The createExpRatioMap boolean: if 'true' the ExpRatioMap will be writed on file. (default value = false)\n   - The minThreshold (default value = 120)\n   - The maxThreshold (default value = 140)\n   - The square size (default value = 20).\n");
 		cout << endString << endl;		
 		exit (EXIT_FAILURE);
 	}
@@ -74,69 +75,70 @@ int main(int argc, char *argv[])
 		// PARAMETRI OBBLIGATORI ---------------------------------------------------
         const char * outfile = argv[1];
         const char * imagePath = argv[2];
-		double l = atof(argv[3]);
-		double b = atof(argv[4]);
+        isAlreadyNormalized = argv[3];
+		double l = atof(argv[4]);
+		double b = atof(argv[5]);
 
         
 		
 
 		// PARAMETRI OPZIONALI -------------------------------------------
-		if(argc == 6)
+		if(argc == 7)
 		{	
-			if(((string)argv[5])!="d")
-				isAlreadyNormalized = argv[5];
-		}
-		else if(argc == 7)
-		{
-			if(((string)argv[5])!="d")
-				isAlreadyNormalized = argv[5];
 			if(((string)argv[6])!="d")
-				createExpRatioMap = argv[6];
+				createExpNormalizedMap = argv[6];
 		}
 		else if(argc == 8)
-		{	
-			if(((string)argv[5])!="d")
-				isAlreadyNormalized = argv[5];
+		{
 			if(((string)argv[6])!="d")
-				createExpRatioMap = argv[6];
+				createExpNormalizedMap = argv[6];
 			if(((string)argv[7])!="d")
-				minThreshold = atof(argv[7]);
+				createExpRatioMap = argv[7];
+		}
+		else if(argc == 9)
+		{	
+			if(((string)argv[6])!="d")
+				createExpNormalizedMap = argv[6];
+			if(((string)argv[7])!="d")
+				createExpRatioMap = argv[7];
+			if(((string)argv[8])!="d")
+				minThreshold = atof(argv[8]);
 			}
 		
-		else if(argc == 9)
-		{
-			if(((string)argv[5])!="d")
-				isAlreadyNormalized = argv[5];
-			if(((string)argv[6])!="d")
-				createExpRatioMap = argv[6];
-			if(((string)argv[7])!="d")
-				minThreshold = atof(argv[7]);
-			if(((string)argv[8])!="d")
-				maxThreshold = atof(argv[8]);
-	
-		}
 		else if(argc == 10)
 		{
-			if(((string)argv[5])!="d")
-				isAlreadyNormalized = argv[5];
 			if(((string)argv[6])!="d")
-				createExpRatioMap = argv[6];
+				createExpNormalizedMap = argv[6];
 			if(((string)argv[7])!="d")
-				minThreshold = atof(argv[7]);
+				createExpRatioMap = argv[7];
 			if(((string)argv[8])!="d")
-				maxThreshold = atof(argv[8]);
+				minThreshold = atof(argv[8]);
 			if(((string)argv[9])!="d")
-				squareSize = atof(argv[9]);
+				maxThreshold = atof(argv[9]);
+	
+		}
+		else if(argc == 11)
+		{
+			if(((string)argv[6])!="d")
+				createExpNormalizedMap = argv[6];
+			if(((string)argv[7])!="d")
+				createExpRatioMap = argv[7];
+			if(((string)argv[8])!="d")
+				minThreshold = atof(argv[8]);
+			if(((string)argv[9])!="d")
+				maxThreshold = atof(argv[9]);
+			if(((string)argv[10])!="d")
+				squareSize = atof(argv[10]);
 		}
 
 				
 		
-		bool isAlreadyNormalizedBool;
-		if( strcmp(isAlreadyNormalized, "true") == 0 ){
-			isAlreadyNormalizedBool = true;
+		bool createExpNormalizedMapBool;
+		if( strcmp(createExpNormalizedMap, "true") == 0 ){
+			createExpNormalizedMapBool = true;
 		}
 		else{
-			isAlreadyNormalizedBool = false;
+			createExpNormalizedMapBool = false;
 		}
 		
 		bool createExpRatioMapBool;
@@ -145,6 +147,14 @@ int main(int argc, char *argv[])
 		}
 		else{
 			createExpRatioMapBool = false;
+		}
+		
+		bool isAlreadyNormalizedBool;
+		if( strcmp(isAlreadyNormalized, "true") == 0 ){
+			isAlreadyNormalizedBool = true;
+		}
+		else{
+			isAlreadyNormalizedBool = false;
 		}
 		
 
@@ -170,7 +180,7 @@ int main(int argc, char *argv[])
 		// CORE LOGIC -----------------------------------------------
 
 
-		ExpRatioEvaluator exp(imagePath, isAlreadyNormalizedBool, createExpRatioMapBool, minThreshold, maxThreshold, squareSize);
+		ExpRatioEvaluator exp(imagePath, isAlreadyNormalizedBool, createExpNormalizedMapBool, createExpRatioMapBool, minThreshold, maxThreshold, squareSize);
 					
 		double expRatio = exp.computeExpRatioValues(l,b);
 
