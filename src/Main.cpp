@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 	
 	if(argc < 6 || argc > 11)
 	{
-		printf("\nAt least 5 arguments expected (+ 5 optional)\n   - The name of the output file\n   - The .exp file path\n   - The isExpMapNormalized boolean: if 'true' we assert that the exp map given in input is already normalized. If 'false' the exp map will be normalized and it will be writed on file (default value = false)\n   - The l coordinate\n   - The b coordinate\n\n(Optional)\n   - The createExpNormalizedMap: if 'true' the ExpNormalizedMap will be writed on file.\n   - The createExpRatioMap boolean: if 'true' the ExpRatioMap will be writed on file. (default value = false)\n   - The minThreshold (default value = 120)\n   - The maxThreshold (default value = 140)\n   - The square size (default value = 20).\n");
+		printf("\nAt least 5 arguments expected (+ 5 optional)\n   - The name of the output file\n   - The .exp file path\n   - The isExpMapNormalized boolean: if 'true' we assert that the exp map given in input is already normalized. If 'false' the exp map will be normalized and it will be writed on file (default value = false)\n   - The l coordinate\n   - The b coordinate\n\n(Optional)\n   - The createExpNormalizedMap: if 'true' the ExpNormalizedMap will be writed on file. (default value = false)\n   - The createExpRatioMap boolean: if 'true' the ExpRatioMap will be writed on file. (default value = false)\n   - The minThreshold (default value = 120)\n   - The maxThreshold (default value = 140)\n   - The square size (default value = 20).\n");
 		cout << endString << endl;		
 		exit (EXIT_FAILURE);
 	}
@@ -130,8 +130,14 @@ int main(int argc, char *argv[])
 			if(((string)argv[10])!="d")
 				squareSize = atof(argv[10]);
 		}
-
-				
+		
+		bool isAlreadyNormalizedBool;
+		if( strcmp(isAlreadyNormalized, "true") == 0 ){
+			isAlreadyNormalizedBool = true;
+		}
+		else{
+			isAlreadyNormalizedBool = false;
+		}				
 		
 		bool createExpNormalizedMapBool;
 		if( strcmp(createExpNormalizedMap, "true") == 0 ){
@@ -149,13 +155,6 @@ int main(int argc, char *argv[])
 			createExpRatioMapBool = false;
 		}
 		
-		bool isAlreadyNormalizedBool;
-		if( strcmp(isAlreadyNormalized, "true") == 0 ){
-			isAlreadyNormalizedBool = true;
-		}
-		else{
-			isAlreadyNormalizedBool = false;
-		}
 		
 
 
@@ -166,9 +165,10 @@ int main(int argc, char *argv[])
 
 		cout << "\noutfile: " << outfile << endl;
 		cout << "imagePath: " << imagePath << endl;
+		cout << "isAlreadyNormalized: " << isAlreadyNormalized << endl;
 		cout << "l: " << l << endl;
 		cout << "b: " << b << endl;
-		cout << "isAlreadyNormalized: " << isAlreadyNormalized << endl;
+		cout << "createExpNormalizedMap: " << createExpNormalizedMap << endl;
 		cout << "createExpRatioMap: " << createExpRatioMap << endl;
 		cout << "MinThreshold: " << minThreshold << endl;
 		cout << "MaxThreshold: " << maxThreshold << endl;
