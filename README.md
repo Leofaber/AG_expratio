@@ -19,7 +19,7 @@ Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvalua
 	
 	b: latitudine galattica ( double )
 
-	createExpNormalizedMap : se il valore è true verrà scritta su file la mappa normalizzata. 
+	createExpNormalizedMap : se il valore è "yes" verrà scritta su file la mappa normalizzata. 
 
 	createExpRatioMap: se il valore è "yes", verrà scritta su file la mappa exp-ratio ovvero quella mappa in cui il valore di ogni pixel rappresenta il valore della valutazione exp-ratio calcolato sul medesimo pixel. 
 	
@@ -32,7 +32,7 @@ Per maggiori informazioni consultare: https://github.com/Leofaber/ExpRatioEvalua
 
 ### Esempio di utilizzo
 
-	./bin/AG_expratio log.txt ../../mappetest/exp.exp false 45 30 true true 110 150 10
+	./bin/AG_expratio log.txt ../../mappetest/exp.exp no 45 30 yes yes 110 150 10
 
 ### Output
 
