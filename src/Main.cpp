@@ -11,7 +11,7 @@
 */
 
 
-
+#include <fstream>
 #include <iomanip> 
 #include <cstring>
 #include <PilParams.h>
@@ -34,12 +34,12 @@ const PilDescription paramsDescr[] = {
 	{ PilString, "imagePath", "Input expMap file name"},
 	{ PilBool, "isExpMapNormalized","If 'yes' (or 'y') you assert that the exp-map is already normalized. Insert 'None' (or 'no') instead"},
 	{ PilReal, "l", "Longitude of map center (galactic)" },
-    { PilReal, "b", "Latitude of map center (galactic)" },        
-    { PilBool, "createExpNormalizedMap", "If 'yes' (or 'y') the normalized exp map will be written on file"},
-    { PilBool, "createExpRatioMap", "If true the exp-ratio map will be written on file"},
-    { PilReal, "minThreshold", "The lower bound for the threshold level in exp-ratio evaluation"},
-    { PilReal, "maxThreshold", "The upper bound for the threshold level in exp-ratio evaluation"},
-    { PilReal, "squareSize", "The degree dimension of the exp ratio evaluation area's edge"},
+    	{ PilReal, "b", "Latitude of map center (galactic)" },        
+    	{ PilBool, "createExpNormalizedMap", "If 'yes' (or 'y') the normalized exp map will be written on file"},
+    	{ PilBool, "createExpRatioMap", "If true the exp-ratio map will be written on file"},
+    	{ PilReal, "minThreshold", "The lower bound for the threshold level in exp-ratio evaluation"},
+    	{ PilReal, "maxThreshold", "The upper bound for the threshold level in exp-ratio evaluation"},
+    	{ PilReal, "squareSize", "The degree dimension of the exp ratio evaluation area's edge"},
    	{ PilNone, "", "" }
 };
 
@@ -60,36 +60,36 @@ int main(int argc, char *argv[])
 	
 	
 	PilParams params(paramsDescr);
-    if (!params.Load(argc, argv))
-        return EXIT_FAILURE;
+   	if (!params.Load(argc, argv))
+        	return EXIT_FAILURE;
         
         
-    // PARAMETRI OBBLIGATORI ---------------------------------------------------
-    const char *outfile				= params["outfile"];
-    const char *imagePath 			= params["imagePath"];	
-    bool isExpMapNormalized 		= params["isExpMapNormalized"];	
-	double l 						= params["l"];	
-	double b 						= params["b"];	
+    	// PARAMETRI OBBLIGATORI ---------------------------------------------------
+    	const char *outfile		= params["outfile"];
+    	const char *imagePath 		= params["imagePath"];	
+    	bool isExpMapNormalized 	= params["isExpMapNormalized"];	
+	double l 			= params["l"];	
+	double b 			= params["b"];	
 	bool createExpNormalizedMap 	= params["createExpNormalizedMap"];
-	bool createExpRatioMap 			= params["createExpRatioMap"];
-	double minThreshold 			= params["minThreshold"]; 
-	double maxThreshold 			= params["maxThreshold"]; 
-	double squareSize 				= params["squareSize"];  
+	bool createExpRatioMap 		= params["createExpRatioMap"];
+	double minThreshold 		= params["minThreshold"]; 
+	double maxThreshold 		= params["maxThreshold"]; 
+	double squareSize 		= params["squareSize"];  
 	 
 
 	// PRINT INPUT PARAMETERS -------------------------------------
 
 
-	cout << "\noutfile: " 				<< outfile << endl;
-	cout << "imagePath: " 				<< imagePath << endl;
+	cout << "\noutfile: " 			<< outfile << endl;
+	cout << "imagePath: " 			<< imagePath << endl;
 	cout << "isExpMapNormalized: " 		<< isExpMapNormalized << endl;
-	cout << "l: "						<< l << endl;
-	cout << "b: " 						<< b << endl;
+	cout << "l: "				<< l << endl;
+	cout << "b: " 				<< b << endl;
 	cout << "createExpNormalizedMap: " 	<< createExpNormalizedMap << endl;
 	cout << "createExpRatioMap: " 		<< createExpRatioMap << endl;
-	cout << "MinThreshold: " 			<< minThreshold << endl;
-	cout << "MaxThreshold: "			<< maxThreshold << endl;
-	cout << "squareSize: " 				<< squareSize << "\n" <<endl;
+	cout << "MinThreshold: " 		<< minThreshold << endl;
+	cout << "MaxThreshold: "		<< maxThreshold << endl;
+	cout << "squareSize: " 			<< squareSize << "\n" <<endl;
 	
 
 
@@ -98,25 +98,25 @@ int main(int argc, char *argv[])
 
 
 	ExpRatioEvaluator exp(	imagePath,
-							isExpMapNormalized,
-							createExpNormalizedMap, 
-							createExpRatioMap,
-							minThreshold, 
-							maxThreshold,
-							squareSize);
+				isExpMapNormalized,
+				createExpNormalizedMap, 
+				createExpRatioMap,
+				minThreshold, 
+				maxThreshold,
+				squareSize);
 				
 	double expRatio = exp.computeExpRatioValues(l,b);
 
 
 	// OUTPUT ----------------------------------------------------
 	
-	
+ 
 	ofstream resText(outfile);
 	resText.setf(ios::fixed); 
 
 	resText << setprecision(5) << expRatio; 
 	
-	cout << "Created " <<outfile<< " log file."<<endl;
+	cout << "Created " << outfile << " log file."<<endl;
 	resText.close();
 	
 	cout << endString << endl;
