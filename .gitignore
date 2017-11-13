@@ -53,3 +53,4 @@ include
 version
 include/ExpRatioEvaluator.h
 src/ExpRatioEvaluator.cpp
+.run.sh
