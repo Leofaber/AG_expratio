@@ -1,31 +1,3 @@
-
-Skip to content
-This repository
-
-    Pull requests
-    Issues
-    Marketplace
-    Explore
-
-    @Leofaber
-
-1
-0
-
-    0
-
-Leofaber/AG_utils
-Code
-Issues 0
-Pull requests 0
-Projects 0
-Wiki
-Insights
-Settings
-AG_utils/include/ExpRatioEvaluator.h
-9c59d40 10 days ago
-@Leofaber Leofaber code improvement
-164 lines (108 sloc) 4.47 KB
 /*
  * Copyright (c) 2017
  *     Leonardo Baroncelli, Giancarlo Zollino,
